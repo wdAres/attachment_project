@@ -1,13 +1,17 @@
 import React, { useContext } from 'react'
 import classes from './Card.module.css'
 import StatesContext from '../../store/StatesContext'
+// import StatesContext from '../../store/StatesContext'
 
 const Card = ({ data, initial }) => {
 
-    const ctx = useContext(StatesContext)
+  const ctx = useContext(StatesContext)
 
   const clickHandler = () => {
-    ctx?.updateData({
+    
+    console.log(initial);
+    
+    ctx.updateData({
       [initial]: {
         ...data
       }

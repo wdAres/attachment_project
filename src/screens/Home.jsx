@@ -10,89 +10,96 @@ import StatesContext from '../store/StatesContext';
 
 const Home = () => {
 
-    const[adult,setAdult] = useState(0)
-    const[child,setChild] = useState(0)
-    const[infant,setInfant] = useState(0)
-
+    const [adult, setAdult] = useState(0)
+    const [child, setChild] = useState(0)
+    const [infant, setInfant] = useState(0)
+    const [radio,setRadio] = useState(0)
     const ctx = useContext(StatesContext)
-
-    console.log(ctx)
 
     const addressData = [
         {
             label: 'Depart From',
-            cityName:ctx?.data?.from?.cityName ?? 'New Delhi'
+            cityName: ctx?.data?.from?.cityName ?? 'New Delhi',
+            cls: 'left',
+            initialKey: 'from'
 
         },
         {
             label: 'Going To',
-            cityName:ctx?.data?.destination?.cityName ??'Mumbai'
+            cityName: ctx?.data?.destination?.cityName ?? 'Mumbai',
+            cls: 'right',
+            initialKey: 'destination'
         }
     ]
 
-
     const btnInputData = [
         {
-            label:'Adult',
-            setterValue:adult,
-            setterFunc:setAdult,
-            id:'adult'
+            label: 'Adult',
+            setterValue: adult,
+            setterFunc: setAdult,
+            id: 'adult'
         },
         {
-            label:'Child(2-12 Yrs)',
-            setterValue:child,
-            setterFunc:setChild,
-            id:'child'
+            label: 'Child(2-12 Yrs)',
+            setterValue: child,
+            setterFunc: setChild,
+            id: 'child'
         },
         {
-            label:'Infant(Below 2 Yrs)',
-            setterValue:infant,
-            setterFunc:setInfant,
-            id:'infant'
+            label: 'Infant(Below 2 Yrs)',
+            setterValue: infant,
+            setterFunc: setInfant,
+            id: 'infant'
         },
     ]
 
     const radioBtnsData = [
         {
-            label:'Economy',
-            id:'economy',
-            name:'class'
+            label: 'Economy',
+            id: 'economy',
+            name: 'class',
+            value:0
         },
         {
-            label:'Premium Economy',
-            id:'prenium_economy',
-            name:'class'
+            label: 'Premium Economy',
+            id: 'prenium_economy',
+            name: 'class',
+            value:1
         },
         {
-            label:'Business',
-            id:'business',
-            name:'class'
+            label: 'Business',
+            id: 'business',
+            name: 'class',
+            value:2
         },
     ]
 
     return (
-        <section>
-            <h1>Screen 1</h1>
-            <Link to={'/countries'}  className={classes.divided}>
-                <Address {...addressData[0]} />
-                <button className={classes.switch_btn}><GoArrowSwitch /></button>
-                <Address  {...addressData[1]} />
-            </Link>
+        <section className={'section'}>
+            <div className={'form'}>
+                <h1 className={classes.heading}>Home</h1>
+                <Link to={'/countries'} className={classes.divided}>
+                    <Address {...addressData[0]} />
+                    <button className={classes.switch_btn}><GoArrowSwitch /></button>
+                    <Address  {...addressData[1]} />
+                </Link>
 
-            <Select />
+                <Select />
 
-            <div className={classes.grid_container}>
-                {btnInputData.map(element=>(
-                    <BtnInput {...element} key={element.id} />
-                ))}
+                <div className={classes.grid_container}>
+                    {btnInputData.map(element => (
+                        <BtnInput {...element} key={element.id} />
+                    ))}
+                </div>
+
+                <div className={classes.flex_container}>
+                    {radioBtnsData.map(element => (
+                        <Radio {...element} key={element.id} />
+                    ))}
+                </div>
+
+                <button  onClick={()=>alert('form submitted!')} className={classes.checkout}>Submit</button>
             </div>
-
-            <div className={classes.flex_container}>
-                {radioBtnsData.map(element=>(
-                    <Radio {...element} key={element.id} />
-                ))}
-            </div>
-
         </section>
     )
 }

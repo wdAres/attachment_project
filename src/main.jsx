@@ -7,8 +7,6 @@ import StatesContext from './store/StatesContext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <StatesContext>
       <App />
-    </StatesContext>
   </BrowserRouter>,
 )

@@ -1,0 +1,29 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    position: relative;
+}
+.select{
+    border:0 ;
+    border-bottom: 1px solid rgb(102, 102, 102);
+    font-size: 13px;
+    text-transform: capitalize;
+    padding: 0px 0 5px;
+    appearance: none;
+    outline: none;
+    color: black;
+    font-weight: 500;
+}
+.label{
+    font-size: 13px;
+    color: rgb(102, 102, 102);
+    text-transform: capitalize;
+    font-weight: 500;
+}
+.icon{
+    position: absolute;
+    right: 0;
+    top: 26px;
+    transform: rotate(180deg);
+}

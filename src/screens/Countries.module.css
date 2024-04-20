@@ -1,0 +1,54 @@
+.data_container{
+    padding: 10px;
+    height: 300px;
+    overflow: scroll;
+}
+
+.divided {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    color: inherit;
+}
+
+.switch_btn {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 1px solid orange;
+    color: orange;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+
+
+.active{
+    border-bottom: 2px solid orange;
+}
+
+.checkout{
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    background: rgb(243, 203, 124);
+    color: white;
+    border: none;
+cursor: pointer;
+}
+
+.checkout:hover{
+    background:rgb(240, 180, 59) ;
+}
+
+
+@media screen and (max-width:750px){
+    .divided {
+        flex-direction: column;
+    }
+    
+    
+  }

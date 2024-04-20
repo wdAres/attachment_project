@@ -5,67 +5,67 @@ import { GoArrowSwitch } from 'react-icons/go'
 import Card from '../components/Card/Card'
 
 import data from './airports.json'
+import { useNavigate } from 'react-router-dom'
 
 const Counries = () => {
 
 
     const [filteredArray, setFilteredArray] = useState([])
     const [searchKey, setSearchKey] = useState('')
-    const [loading, setLoading] = useState(false)
-
-    const core_inital_values = {
-        0:'from',
-        1:'destination'
-    }
-
-    const [initial,setInitial] = useState(0)
+    const navigate = useNavigate()
+    const [initial, setInitial] = useState('from')
 
     const addressData = [
         {
             label: 'Depart From',
             setterFunc: setSearchKey,
-            initialSetter:setInitial,
-            initialKey:0
-
+            initialSetter: setInitial,
+            initialKey: 'from',
+            cls: 'left'
         },
         {
             label: 'Going To',
             setterFunc: setSearchKey,
-            initialSetter:setInitial,
-            initialKey:1
+            initialSetter: setInitial,
+            initialKey: 'destination',
+            cls: 'right'
         }
     ]
 
-    function  filterByCityName(array, cityName) {
-        return array.filter(obj => obj.cityName.includes(cityName));
+    function filterByCityName(array, cityName) {
+        return array.filter(obj => obj.cityName.toLowerCase().includes(cityName));
     }
 
-    useEffect(()=>{
-        let arr = filterByCityName(data,searchKey)
+    useEffect(() => {
+        let arr = filterByCityName(data, searchKey)
         setFilteredArray(arr)
-    },[searchKey])
+    }, [searchKey])
 
 
-    useEffect(()=>{
-        console.log('clicked')
+    useEffect(() => {
         if (searchKey) {
             setSearchKey('')
         }
-    },[initial])
+    }, [initial])
+
+    
 
     return (
-        <section className={classes.section}>
-            <h1>Screen 2</h1>
-            <div className={classes.divided}>
-                <Address  {...addressData[0]} input={true} />
-                <button className={classes.switch_btn}><GoArrowSwitch /></button>
-                <Address {...addressData[1]} input={true} />
-            </div>
+        <section className={'section'}>
+            <div className={'form'}>
+                <h1>Select City</h1>
+                <div className={classes.divided}>
+                    <Address activeCls={initial == 'from' ? classes.active : ''}  {...addressData[0]} input={true} />
+                    <Address activeCls={initial == 'destination' ? classes.active : ''}  {...addressData[1]} input={true} />
+                </div>
 
-            <div className={classes.data_container}>
-                {filteredArray.map((element, index) => (
-                    <Card inital={core_inital_values[initial]} data={element} key={element.index} />
-                ))}
+                <div className={classes.data_container}>
+                    {filteredArray.map((element, index) => (
+                        <Card initial={initial} data={element} key={element.index} />
+                    ))}
+                </div>
+
+                <button onClick={()=>navigate('/')} className={classes.checkout}>Checkout</button>
             </div>
 
         </section>
